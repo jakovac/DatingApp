@@ -9,8 +9,12 @@ import { User } from '../_modals/user';
 })
 export class AccountService {
   baseUrl = 'https://localhost:5001/api/';
-  
-  private currentUserSource = new ReplaySubject<User>(1);
+  ///zasto smo ovo setovali da bude observable, da bi moglo da se 
+  ///prati od strane drugih klasa ili komponenata
+  ///kada se bilo sta subscribe na ovo bice primeceno kada se promeni.
+  ///AuthGuard je sad u mogucnosti da se subscribe-uje na ovaj observable
+  ///guard se automatski subscribe-uje kada pokusamo da pristupimo currentUserSource
+  private currentUserSource = new ReplaySubject<User>(1); 
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) { }
