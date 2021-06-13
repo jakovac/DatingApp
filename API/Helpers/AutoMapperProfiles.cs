@@ -15,7 +15,10 @@ namespace API.Helpers
             //prvo dajemo destinaciju u koju ce da se mapira, posle kazemo odakle zelimo da se mapira i source do podatka
                 .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
+        //sada hocemo obrnuto u odnosu na gore, za update da idemo iz memberDto u AppUser
+            CreateMap<MemberUpdateDto, AppUser>();
         }
         //ovo koristimo ako dependency koju uvozimo pa moramo da dodamo u ApplicatioServiceExtensions
     }
+
 }
