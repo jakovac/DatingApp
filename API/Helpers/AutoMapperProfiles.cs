@@ -17,6 +17,7 @@ namespace API.Helpers
             CreateMap<Photo, PhotoDto>();
         //sada hocemo obrnuto u odnosu na gore, za update da idemo iz memberDto u AppUser
             CreateMap<MemberUpdateDto, AppUser>();
+            CreateMap<RegisterDto, AppUser>();
         }
         //ovo koristimo ako dependency koju uvozimo pa moramo da dodamo u ApplicatioServiceExtensions
     }
