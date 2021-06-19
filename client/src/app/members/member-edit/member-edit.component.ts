@@ -12,11 +12,12 @@ import { MembersService } from 'src/app/_services/members.service';
   templateUrl: './member-edit.component.html',
   styleUrls: ['./member-edit.component.css']
 })
+
 //prvo da uzmemo current usera preko account servisa i onda cemo odatle uzeti username da uzmemo tok konkretnog membera
 export class MemberEditComponent implements OnInit {
-  @ViewChild('editForm') editForm?: NgForm;
-  member?: Member;
-  user?: User;
+  @ViewChild('editForm') editForm!: NgForm;
+  member!: Member;
+  user!: User;
   //dakle punimo User objekat iz current usera iz AccountSetvice-a, a current user name je observable,
   //moramo da izvadimo usera iz observable-a
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) { //pristup browser elementima
@@ -34,7 +35,7 @@ export class MemberEditComponent implements OnInit {
   }
 
   loadMember() {
-    this.memberService.getMember(this.user?.username!).subscribe(member => {
+    this.memberService.getMember(this.user.username).subscribe(member => {
       this.member = member
     })
   }
@@ -42,7 +43,7 @@ export class MemberEditComponent implements OnInit {
   updateMember() {
     this.memberService.updateMember(this.member!).subscribe(() => {
       this.toastr.success('Profile updated succesefully');
-      this.editForm?.reset(this.member);//updated member posle submita forme
+      this.editForm!.reset(this.member);//updated member posle submita forme
     })
     
   }
