@@ -31,9 +31,12 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
                 }
                 throw modalStateErrors.flat();
               }
-              else {
+              else if(typeof(error.error) == 'object'){
                 error.statusText = "Bad request";
                 this.toastr.error(error.statusText, error.status)
+              }
+              else {
+                this.toastr.error(error.error, error.status)
               }
               break;
             case 401:

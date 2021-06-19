@@ -75,14 +75,6 @@ export class MembersService {
     // )
   }
 
-  setMainPhoto(photoId: number) {
-    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
-  }
-
-  deletePhoto(photoId: number) {
-    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
-  }
-
   getMember(username: string) {
     // const member = this.members.find(x => x.username === username);
     // if(member !== undefined) return of(member);
@@ -105,6 +97,24 @@ export class MembersService {
         this.members[index] = member;
       })
     )
+  }
+
+  setMainPhoto(photoId: number) {
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+  }
+
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
+
+  addLike(username: string) {
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+
+  getLikes(predicate: string, pageNumber: number, pageSize: number) {
+    let params = this.getPaginationHeader(pageNumber, pageSize);
+    params = params.append('predicate', predicate);
+    return this.getPaginatedResults<Partial<Member[]>>(this.baseUrl + 'likes', params);//this.http.get<Partial<Member[]>>(this.baseUrl + 'likes?predicate=' + predicate);
   }
 
   private getPaginatedResults<T>(url: string, params: HttpParams) {
