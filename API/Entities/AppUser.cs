@@ -23,6 +23,8 @@ namespace API.Entities
         public ICollection<Photo> Photos { get; set; }
         public ICollection<UserLike> LikedByUsers { get; set; } //lista usera koji su lakovali trenutno logovanog usera
         public ICollection<UserLike> LikedUsers { get; set; } //lista usera koje je logovani user likeovao
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection <Message> MessagesReceived { get; set; }
 
     }
 }
