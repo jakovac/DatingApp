@@ -32,13 +32,13 @@ namespace API.Controllers
 
             if(sourceUser.UserName == username) return BadRequest("You cannot like yourself");
 
-            var userLike = await _likesRepository.GetUserLike(sourceUserID, likedUser.ID);
+            var userLike = await _likesRepository.GetUserLike(sourceUserID, likedUser.Id);
 
             if(userLike != null) return BadRequest("You already like this user");
 
             userLike = new UserLike {
                 SourceUserID = sourceUserID,
-                LikedUserID = likedUser.ID
+                LikedUserID = likedUser.Id
             };
 
             sourceUser.LikedUsers.Add(userLike);
