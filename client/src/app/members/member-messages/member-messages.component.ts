@@ -14,6 +14,7 @@ import { MessageService } from 'src/app/_services/message.service';
     @Input() messages!: Message[];
     @Input() username!: string;
     messageContent!: string;
+    loading = false;
   
     constructor(public messageService: MessageService) { } //public da bi mogli da pristupimo iz komponente direktno
   
@@ -21,10 +22,11 @@ import { MessageService } from 'src/app/_services/message.service';
     }
   
     sendMessage() {
+      this.loading = true;
       this.messageService.sendMessage(this.username, this.messageContent).then(() => {
         // this.messages.push(message);
         this.messageForm.reset();
-      })
+      }).finally(() => this.loading = false);
     }
   
   }
