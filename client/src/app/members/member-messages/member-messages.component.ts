@@ -14,14 +14,14 @@ import { MessageService } from 'src/app/_services/message.service';
     @Input() username!: string;
     messageContent!: string;
   
-    constructor(private messageService: MessageService) { }
+    constructor(public messageService: MessageService) { } //public da bi mogli da pristupimo iz komponente direktno
   
     ngOnInit(): void {
     }
   
     sendMessage() {
-      this.messageService.sendMessage(this.username, this.messageContent).subscribe(message => {
-        this.messages.push(message);
+      this.messageService.sendMessage(this.username, this.messageContent).then(() => {
+        // this.messages.push(message);
         this.messageForm.reset();
       })
     }

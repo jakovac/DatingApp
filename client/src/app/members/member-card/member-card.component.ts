@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Member } from 'src/app/_modals/member';
 import { MembersService } from 'src/app/_services/members.service';
+import { PresenceService } from 'src/app/_services/presence.service';
 
 @Component({
   selector: 'app-member-card',
@@ -11,8 +12,8 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberCardComponent implements OnInit {
   @Input() member!: Member
-
-  constructor(private memberService: MembersService, private toastr: ToastrService) { }
+  //public presence da bi dosli do onlineUsera iz observable-a i samo idemo u member.card html
+  constructor(private memberService: MembersService, private toastr: ToastrService, public presence: PresenceService) { } 
 
   ngOnInit(): void {
   }
