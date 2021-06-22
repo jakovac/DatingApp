@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace API.DTOs
 {
@@ -14,5 +15,10 @@ namespace API.DTOs
         public string Content { get; set; }
         public DateTime? DateRead { get; set; }
         public DateTime MessageSent { get; set; }
+
+        [JsonIgnore] //nece poslati ka klijentu ali cemo imati pristup njima u repositoriju
+        public bool SenderDeleted { get; set; }
+        [JsonIgnore]
+        public bool RecipientDeleted { get; set; }
     }
 }
